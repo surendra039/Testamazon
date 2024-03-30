@@ -24,7 +24,7 @@ public class AddAndRemoveFromCart {
         fr = new FileReader("C:\\Users\\sursingh21\\eclipse-workspace\\amazonTest\\src\\test\\resources\\configfiles\\config.properties");
         prop.load(fr);
 
-        if (prop.getProperty("browser").equalsIgnoreCase("chrome")) {
+        if (prop.getProperty("browser").equalsIgnoreCase("chrome")) {							//check the browser
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (prop.getProperty("browser").equalsIgnoreCase("firefox")) {
@@ -38,31 +38,31 @@ public class AddAndRemoveFromCart {
 
     @SuppressWarnings("deprecation")
 	private static void Test() {
-        driver.findElement(By.id("nav-link-accountList")).click();
-        driver.findElement(By.id("ap_email")).sendKeys("ssurendra039@gmail.com");
+        driver.findElement(By.id("nav-link-accountList")).click();					//click on the login button
+        driver.findElement(By.id("ap_email")).sendKeys("username");					//enter the username
         driver.findElement(By.id("continue")).click();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.id("ap_password")).sendKeys("Sure@1123");
-        driver.findElement(By.id("signInSubmit")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.id("ap_password")).sendKeys("password");				// enter the password
+        driver.findElement(By.id("signInSubmit")).click();							//click on login button
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);       
 
-        WebElement search = driver.findElement(By.id("twotabsearchtextbox"));
+        WebElement search = driver.findElement(By.id("twotabsearchtextbox"));			//search the product
         search.sendKeys("iPhone 15");
-        driver.findElement(By.id("nav-search-submit-button")).click();
-        driver.findElement(By.xpath("//span[contains(text(),'Apple iPhone 15 (128 GB) - Blue')]")).click();
+        driver.findElement(By.id("nav-search-submit-button")).click();									// click on the search
+        driver.findElement(By.xpath("//span[contains(text(),'Apple iPhone 15 (128 GB) - Blue')]")).click();			// click on the product
 
-        Set<String> handles = driver.getWindowHandles();
+        Set<String> handles = driver.getWindowHandles();						//getting window handles foe switching the window
 		ArrayList ar = new ArrayList(handles);
-        driver.switchTo().window((String)ar.get(1));
+        driver.switchTo().window((String)ar.get(1));								//switching to the product window
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("(//*[@id=\"atc-declarative\"])[2]")).click();
-        driver.findElement(By.cssSelector("#attach-sidesheet-view-cart-button > span > input")).click();
+        driver.findElement(By.xpath("(//*[@id=\"atc-declarative\"])[2]")).click();     //adding product into cart
+        driver.findElement(By.cssSelector("#attach-sidesheet-view-cart-button > span > input")).click(); //adding the recommended product
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.name("submit.addToCart")).click();
+        driver.findElement(By.name("submit.addToCart")).click();										//adding to the cart
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.id("nav-cart")).click();
+        driver.findElement(By.id("nav-cart")).click();													//navigating to the cart
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("(//input[@value='Delete'])[1]")).click();
+        driver.findElement(By.xpath("(//input[@value='Delete'])[1]")).click();							//removing extra products
         driver.quit();
     }
 }
