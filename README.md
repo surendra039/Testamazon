@@ -1,4 +1,5 @@
 Project's Title :- amazonTest
+
 Project Description:-
 This project aims to automate the testing of the checkout process on Amazon's e-commerce platform to ensure reliability, efficiency, and accuracy. The testing involves creating automated tests for various scenarios encountered during the checkout process, including adding items to the cart, updating shipping information, and removing items from the cart.
 
